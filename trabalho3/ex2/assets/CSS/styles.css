@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+header.cabecalho {
+    background-color: #0077cc;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+nav.navegacao {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px;
+    background-color: #005fa3;
+}
+nav.navegacao a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+nav.navegacao a:hover {
+    text-decoration: underline;
+}
+input:invalid::after {
+    content: "✖";
+    color: red;
+    margin-left: 5px;
+}
+input:valid::after {
+    content: "✓";
+    color: green;
+    margin-left: 5px;
+}
+input[required] {
+    background-color: #fffae6;
+}
+#cpf {
+    font-weight: bold;
+}
+.cabecalho {
+    border-bottom: 4px solid #005fa3;
+}
+form:has(input:invalid) {
+    border: 2px solid red;
+}
+nav.navegacao a:first-child {
+    font-size: 18px;
+    font-weight: bold;
+}
+p:first-of-type {
+    font-style: italic;
+}
+input:invalid {
+    background-color: #ffd6d6;
+}
+input:valid {
+    background-color: #d6ffd6;
+}
+fieldset {
+    background-color: #e6f7ff;
+    border: 2px solid #0077cc;
+    padding: 15px;
+}
+input::placeholder {
+    font-style: italic;
+    color: gray;
+}
