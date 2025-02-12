@@ -1,0 +1,44 @@
+body {
+    background-color: #003366;
+    margin: 0;
+    padding: 0;
+}
+
+.cabecalho {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    width: 100vw;
+    height: 80px;
+    line-height: 80px;
+    margin: 0; 
+    padding: 0;
+}
+.navegacao {
+    background-color: #333;
+    text-align: center;
+    padding: 15px;
+}
+section {
+    width: 75%;
+    margin: 5rem auto;
+    padding: 20px 50px;
+    background-color: #444;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+.navegacao a {
+    margin: 0 20px;
+    color: white;
+    text-decoration: none;
+    background-color: #0077cc;
+    padding: 10px 15px;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+.navegacao a:hover {
+    background-color: #ff5733;
+    color: white;
+}
