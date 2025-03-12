@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Cadastro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(imagens/teclado.png);
+            background-size: 100% 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de Usuário</h1>
+        <form id="formCadastro">
+            <label for="nome">Usuário:</label>
+            <input type="text" id="nome" name="nome">
+            <span class="error" id="nomeError">O usuário deve ser preenchido</span>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+            <span class="error" id="emailError">O email deve ser preenchido</span>
+
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha">
+            <span class="error" id="senhaError">A senha deve ser preenchid</span>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div>
+
+    <script>
+        // Seleciona o formulário
+        const form = document.getElementById('formCadastro');
+
+        // Adiciona um evento de submit ao formulário
+        form.addEventListener('submit', function (event) {
+            // Impede o envio do formulário
+            event.preventDefault();
+
+            // Validação dos campos
+            let isValid = true;
+
+            // Validação do campo Nome
+            const nome = document.getElementById('nome');
+            const nomeError = document.getElementById('nomeError');
+            if (nome.value.trim() === '') {
+                nomeError.style.display = 'block';
+                isValid = false;
+            } else {
+                nomeError.style.display = 'none';
+            }
+
+            // Validação do campo Email
+            const email = document.getElementById('email');
+            const emailError = document.getElementById('emailError');
+            if (email.value.trim() === '') {
+                emailError.style.display = 'block';
+                isValid = false;
+            } else {
+                emailError.style.display = 'none';
+            }
+
+            // Validação do campo Senha
+            const senha = document.getElementById('senha');
+            const senhaError = document.getElementById('senhaError');
+            if (senha.value.trim() === '') {
+                senhaError.style.display = 'block';
+                isValid = false;
+            } else {
+                senhaError.style.display = 'none';
+            }
+
+            // Se todos os campos estiverem válidos, o formulário pode ser enviado
+            if (isValid) {
+                alert('Formulário enviado com sucesso!');
+                form.reset(); // Limpa o formulário
+            }
+        });
+    </script>
+</body>
+</html>
