@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinica ABC Health</title>
+    <link rel="stylesheet" href="assets/CSS/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* Estilo para as abas */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border-top: none;
+        }
+        
+        /* Estilo para botões de aba */
+        .tablink {
+            background-color: #555;
+            color: white;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-size: 17px;
+            width: 33.33%;
+        }
+
+        /* Mudar a cor de fundo dos botões quando passam o mouse */
+        .tablink:hover {
+            background-color: #777;
+        }
+
+        /* Estilo para a aba ativa */
+        .active-tab {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header class="cabecalho">
+        <h1>Clinica ABC Health</h1>
+    </header>
+    
+    <!-- Botões de abas (seguindo o modelo do vídeo) -->
+    <div class="tab">
+        <button class="tablink active-tab" onclick="openTab(event, 'Home')">Home</button>
+        <button class="tablink" onclick="openTab(event, 'Galeria')">Galeria</button>
+        <button class="tablink" onclick="openTab(event, 'Login')">Login</button>
+    </div>
+    
+    <!-- Conteúdo da Home -->
+    <div id="Home" class="tabcontent" style="display: block;">
+        <main class="content-wrapper">
+            <section>
+                <h2>Bem vindo à Clinica ABC Health</h2>
+                <p>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio, quo impedit laudantium, quos labore enim molestiae fugit modi fugiat reprehenderit a cum.
+                </p>
+                <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia reiciendis aliquam maxime amet ducimus, qui eaque earum?
+                </p>
+                <h2>Nossa Missão</h2>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea autem veritatis doloribus sunt consectetur deleniti dolores vitae quod dolore rem iste sequi.
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam incidunt ad voluptatibus.
+                </p>
+            </section>
+            <section class="values-section">
+                <h2>Nossos Valores</h2>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, fugit quod.
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat inventore distinctio ad neque.
+                </p>
+            </section>
+        </main>
+    </div>
+
+    <!-- Conteúdo da Galeria -->
+    <div id="Galeria" class="tabcontent">
+        <main class="gallery-container">
+            <div class="gallery-title">
+                <h2>Nossa Estrutura</h2>
+            </div>
+            <div class="image-grid">
+                <div class="image-item">
+                    <img src="images/b1.jpeg" alt="Imagem de uma médica">
+                </div>
+                <div class="image-item">
+                    <img src="images/b2.webp" alt="Imagem da UTI">
+                </div>
+                <div class="image-item">
+                    <img src="images/b3.png" alt="Sala do Pós Cirurgico">
+                </div>
+                <div class="image-item">
+                    <img src="images/b4.jpeg" alt="Imagem Maca no Corredor">
+                </div>
+                <div class="image-item">
+                    <img src="images/b5.jpeg" alt="Imagem Estetoscopio">
+                </div>
+                <div class="image-item">
+                    <img src="images/b6.jpg" alt="Imagem Centro Cirurgico">
+                </div>
+                <div class="image-item">
+                    <img src="images/b7.png" alt="Imagem Recepção">
+                </div>
+                <div class="image-item">
+                    <img src="images/b8.webp" alt="Imagem Hospital de fora">
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Conteúdo do Login -->
+    <div id="Login" class="tabcontent">
+        <main class="login-container">
+            <form class="login-form">
+                <div class="input-group">
+                    <label for="email">Usuário:</label>
+                    <input type="email" id="email" name="email" placeholder="teste@email.com" required>
+                </div>
+                <div class="input-group">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" placeholder="********" required>
+                </div>
+                <button type="submit">
+                    <span class="material-icons">login</span> Entrar
+                </button>
+            </form>
+        </main>
+    </div>
+    
+    <footer>
+        <i>Av. João Naves de Ávila, Santa Mônica, Uberlândia</i>
+    </footer>
+
+    <script>
+        /**
+         * Função para alternar entre abas na página
+         * @param {Event} event - O evento de clique
+         * @param {string} tabName - O nome da aba que deve ser mostrada
+         */
+        function openTab(event, tabName) {
+            // Declaração de variáveis
+            var i, tabcontent, tablinks;
+            
+            // Obtém todos os elementos com class="tabcontent" e esconde-os
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                // Usa classList.remove e add ao invés de className
+                tabcontent[i].style.display = "none";
+            }
+            
+            // Obtém todos os elementos com class="tablink" e remove a classe "active-tab"
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                // Remove a classe active-tab de todos os botões
+                tablinks[i].classList.remove("active-tab");
+            }
+            
+            // Mostra a aba atual e adiciona a classe "active-tab" ao botão que abriu a aba
+            document.getElementById(tabName).style.display = "block";
+            
+            // Adiciona a classe active-tab ao botão clicado
+            event.currentTarget.classList.add("active-tab");
+        }
+    </script>
+</body>
+</html>

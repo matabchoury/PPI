@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinica ABC Health</title>
+    <link rel="stylesheet" href="assets/CSS/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <header class="cabecalho">
+        <h1>Clinica ABC Health</h1>
+    </header>
+    <nav class="navegacao">
+        <!-- Modificado para usar openTab ao invés de links -->
+        <a href="#" onclick="openTab('home')" class="nav-link active">Home</a>
+        <a href="#" onclick="openTab('galeria')" class="nav-link">Galeria</a>
+        <a href="#" onclick="openTab('login')" class="nav-link">Login</a>
+    </nav>
+    
+    <main class="content-wrapper">
+        <!-- Conteúdo da Home - Ativo por padrão -->
+        <section id="home" class="tab-content active">
+            <h2>Bem vindo à Clinica ABC Health</h2>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio, quo impedit laudantium, quos labore enim molestiae fugit modi fugiat reprehenderit a cum.
+            </p>
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia reiciendis aliquam maxime amet ducimus, qui eaque earum?
+            </p>
+            <h2>Nossa Missão</h2>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea autem veritatis doloribus sunt consectetur deleniti dolores vitae quod dolore rem iste sequi.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam incidunt ad voluptatibus.
+            </p>
+            <div class="values-section">
+                <h2>Nossos Valores</h2>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, fugit quod.
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat inventore distinctio ad neque.
+                </p>
+            </div>
+        </section>
+
+        <!-- Conteúdo da Galeria -->
+        <section id="galeria" class="tab-content">
+            <div class="gallery-container">
+                <div class="gallery-title">
+                    <h2>Nossa Estrutura</h2>
+                </div>
+                <div class="image-grid">
+                    <div class="image-item">
+                        <img src="images/b1.jpeg" alt="Imagem de uma médica">
+                    </div>
+                    <div class="image-item">
+                        <img src="images/b2.webp" alt="Imagem da UTI">
+                    </div>
+                    <div class="image-item">
+                        <img src="images/b3.png" alt="Sala do Pós Cirurgico">
+                    </div>
+                    <div class="image-item">
+                        <img src="images/b4.jpeg" alt="Imagem Maca no Corredor">
+                    </div>
+                    <div class="image-item">
+                        <img src="images/b5.jpeg" alt="Imagem Estetoscopio">
+                    </div>
+                    <div class="image-item">
+                        <img src="images/b6.jpg" alt="Imagem Centro Cirurgico">
+                    </div>
+                    <div class="image-item">
+                        <img src="images/b7.png" alt="Imagem Recepção">
+                    </div>
+                    <div class="image-item">
+                        <img src="images/b8.webp" alt="Imagem Hospital de fora">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conteúdo do Login -->
+        <section id="login" class="tab-content">
+            <div class="login-container">
+                <form class="login-form">
+                    <div class="input-group">
+                        <label for="email">Usuário:</label>
+                        <input type="email" id="email" name="email" placeholder="teste@email.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="senha">Senha:</label>
+                        <input type="password" id="senha" name="senha" placeholder="********" required>
+                    </div>
+                    <button type="submit">
+                        <span class="material-icons">login</span> Entrar
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <i>Av. João Naves de Ávila, Santa Mônica, Uberlândia</i>
+    </footer>
+
+    <script>
+        /**
+         * Função para alternar entre abas na página
+         * @param {string} tabId - O ID da aba que deve ser mostrada
+         */
+        function openTab(tabId) {
+            // Seleciona todos os elementos com a classe tab-content
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            // Oculta todos os conteúdos de abas
+            tabContents.forEach(tab => {
+                // Usa classList.remove para remover a classe 'active'
+                tab.classList.remove('active');
+            });
+            
+            // Seleciona o elemento com o ID especificado
+            const tabToShow = document.getElementById(tabId);
+            
+            // Ativa o conteúdo da aba selecionada
+            // Usa classList.add para adicionar a classe 'active'
+            tabToShow.classList.add('active');
+            
+            // Atualiza a classe ativa na navegação
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            // Remove a classe 'active' de todos os links
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Adiciona a classe 'active' ao link clicado
+            // Usa event.currentTarget para acessar o elemento que disparou o evento
+            // Porém, como estamos usando onclick com função, precisamos encontrar o link de outra forma
+            const clickedLink = document.querySelector(`[onclick="openTab('${tabId}')"]`);
+            clickedLink.classList.add('active');
+        }
+    </script>
+</body>
+</html>
