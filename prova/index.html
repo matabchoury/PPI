@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Helvetica;
+            width: 100%;
+            margin: 0 auto;
+            background-color: bisque;
+        }
+
+        header {
+            background-color: gray;
+            text-align: center;
+            color: white;
+            padding: 8px;
+            margin-top: 15px;
+        }
+
+        .containerCards {
+            margin-top: 10px;
+            padding: 0 20%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: stretch;
+            gap: 20px;
+            flex-direction: row;
+
+        }
+
+        .cards {
+            background-color: white;
+            border-radius: 8px;
+        }
+
+        .cards h4 {
+            color: red;
+        }
+
+        .cards h3 {
+            color: gray;
+        }
+
+        img {
+            height: 200px;
+        }
+
+        form {
+            text-align: center;
+            padding: 10px;
+            ;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Anúncios Encontrados...</h1>
+    </header>
+
+    <main>
+
+        <form>
+            <input type="text " id="busca" name="busca">
+            <button type="submit" id="botaoBuscar">Buscar</button>
+            <button type="submit" id="botaoLimpar">Limpar</button>
+        </form>
+
+        <div class="containerCards">
+            <div class="cards">
+                <h3>Título</h3>
+                <img src="anamnese.jpg" alt="Imagem">
+                <p>Produto muito foda 1!</p>
+                <h4>R$XX,XX</h4>
+            </div>
+            <div class="cards">
+                <h3>Título</h3>
+                <img src="anamnese.jpg" alt="Imagem">
+                <p>Produto muito foda 2!</p>
+                <h4>R$XX,XX</h4>
+            </div>
+            <div class="cards">
+                <h3>Título</h3>
+                <img src="anamnese.jpg" alt="Imagem">
+                <p>Produto muito foda 3!</p>
+                <h4>R$XX,XX</h4>
+            </div>
+            <div class="cards">
+                <h3>Título</h3>
+                <img src="anamnese.jpg" alt="Imagem">
+                <p>Produto muito foda 4!</p>
+                <h4>R$XX,XX</h4>
+            </div>
+            <div class="cards">
+                <h3>Título</h3>
+                <img src="anamnese.jpg" alt="Imagem">
+                <p>Produto muito foda 5!</p>
+                <h4>R$XX,XX</h4>
+            </div>
+            <div class="cards">
+                <h3>Título</h3>
+                <img src="anamnese.jpg" alt="Imagem">
+                <p>Produto muito foda 6!</p>
+                <h4>R$XX,XX</h4>
+            </div>
+
+
+        </div>
+    </main>
+
+    <script>
+
+        let botaoBuscar = document.querySelector("#botaoBuscar");
+        let botaoLimpar = document.querySelector("#botaoLimpar");
+        botaoBuscar.addEventListener("click", (event) => {
+            event.preventDefault();
+            const inputValor = document.querySelector("#busca").value.toLowerCase();
+            if (inputValor === "") {
+                return alert("Você não digitou nada!")
+            }
+            let cardBuscado = document.querySelectorAll(".cards");
+            cardBuscado.forEach(card => {
+                card.style.display = "none";
+                const titulo = card.querySelector("h3").textContent.toLowerCase();
+                const descricao = card.querySelector("p").textContent.toLowerCase();
+                const valor = card.querySelector("h4").textContent.toLowerCase();
+
+                if (titulo.includes(inputValor) || descricao.includes(inputValor) || valor.includes(inputValor)) {
+                card.style.display = "block";
+                }
+            });
+        });
+            botaoLimpar.addEventListener("click", (event) => {
+                event.preventDefault();
+                let cardBuscado = document.querySelectorAll(".cards");
+                cardBuscado.forEach(card =>{
+                    card.style.display = "block";
+                });            
+                document.querySelector("input").value = "";
+            });
+    </script>
+</body>
+</html>

@@ -45,7 +45,6 @@ nav.navegacao-flutuante{
     gap: 20px;
     padding: 10px;
     background-color: grey;
-    position: sticky;
     top: 0;
 }
 nav.navegacao-flutuante a {
@@ -79,7 +78,7 @@ section{
 main.content-wrapper{
     background-color: white;
     padding: 20px;
-    width: 50%;
+    width: 70%;
     margin: 0 auto;
 }
 main.gallery-container{
