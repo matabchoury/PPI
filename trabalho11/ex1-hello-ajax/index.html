@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Teste AJAX Simples</title>
+  <style>
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      line-height: 1.5rem;
+      background-image: url("images/bg2.jpg");
+      background-size: cover;
+      margin: 0;
+    }
+
+    main {
+      width: 60%;
+      background-color: #fff;
+      border: 0.5px solid #ccc;
+      margin: 0;
+      padding: 2% 4%;
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <main>
+    <h1>Faculdade de Computação da UFU</h1>
+    <p>A Faculdade de Computação (FACOM) da Universidade...</p>
+    <p>No início dos anos 2000 foi criado na Faculdade...</p>
+    <button>Carregar mais conteúdo com Ajax</button>
+  </main>
+
+  <script>
+    // Função chamada quando o botão é clicado
+    function loadExtraContent() {
+      // Cria um novo objeto XMLHttpRequest, que permite fazer requisições HTTP assíncronas
+      let xhr = new XMLHttpRequest();
+      // Configura a requisição: método GET para buscar o arquivo "conteudoAdicional.html"
+      // O terceiro parâmetro 'true' indica que a requisição será assíncrona
+      xhr.open("GET", "conteudoAdicional.html", true);
+      // Define o que fazer quando a resposta da requisição for carregada
+      xhr.onload = function () {
+        // Seleciona o elemento <main> do HTML
+        const main = document.querySelector("main");
+        // Insere o conteúdo retornado pela requisição (xhr.responseText) no final do elemento <main>
+        main.insertAdjacentHTML("beforeend", xhr.responseText);
+      };
+      // Envia a requisição
+      xhr.send();
+    }
+    // Seleciona o botão do HTML
+    const button = document.querySelector("button");
+    // Adiciona um ouvinte de evento que chama a função 'loadExtraContent' quando o botão é clicado
+    button.addEventListener("click", loadExtraContent);
+  </script>
+  
+  
+</body>
+
+</html>

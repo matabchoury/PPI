@@ -1,0 +1,12 @@
+i. Código de status retornado: 200 OK
+ii. Valor do cabeçalho Content-Type: application/json
+iii. Valor recebido no corpo da resposta HTTP:
+(
+Json
+{
+  "rua": "Av Floriano",
+  "bairro": "Centro",
+  "cidade": "Uberlândia"
+})
+iv. Valor do cabeçalho Server: openresty
+v. A requisição HTTP não possui o cabeçalho Content-Type.

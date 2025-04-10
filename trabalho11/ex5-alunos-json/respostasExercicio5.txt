@@ -1,0 +1,21 @@
+c)Esses são os alunos encontrados o "aluno1"faz parte do exercicio 2 do trabalho 10 pois usam o msm banco de dados alunos
+[
+  {
+    "nome": "aluno1",
+    "telefone": "tolo'); DELETE FROM aluno; -- comment"
+  },
+  {
+    "nome": "Fulano",
+    "telefone": "123"
+  },
+  {
+    "nome": "Ciclano",
+    "telefone": "456"
+  },
+  {
+    "nome": "Beltrano",
+    "telefone": "789"
+  }
+]
+d)Esse é o primeiro aluno a aparecer: {"nome":"Fulano","telefone":"123"}
+Porem quando trocamos os numeros na URL para 456 esse é oq aparece:{"nome":"Ciclano","telefone":"456"}

@@ -1,0 +1,26 @@
+i. Qual o valor dos cabeçalhos Content-Type e Content-Length?
+
+- O valor do cabeçalho Content-Type é "application/json".
+  Isso indica que o corpo da requisição (payload) está sendo enviado no formato JSON, informando ao servidor que os dados devem ser interpretados como tal.
+
+- O valor do cabeçalho Content-Length é "57".
+  Isso representa o tamanho do corpo da requisição em bytes. Neste caso, os 57 bytes correspondem à string JSON enviada no payload, que é: {"cep":"38400-100","email":"fulano@mail.com","apikey":""}.
+
+ii. O que é apresentado na aba Payload?
+
+- Na aba Payload, é apresentado o seguinte conteúdo:
+  {cep: "38400-100", email: "fulano@mail.com", apikey: ""}
+  Esse é o objeto JavaScript que foi convertido em uma string JSON e enviado no corpo da requisição. Ele contém três propriedades:
+  - "cep": "38400-100" (o CEP fornecido),
+  - "email": "fulano@mail.com" (um endereço de e-mail fixo),
+  - "apikey": "" (uma chave de API vazia).
+
+iii. O que isso significa?
+
+- O cabeçalho Content-Type como "application/json" significa que os dados enviados no corpo da requisição estão no formato JSON, permitindo que o servidor saiba como processá-los corretamente. É um padrão comum em APIs que esperam dados estruturados.
+
+- O Content-Length de 57 bytes significa que o tamanho exato do payload JSON (em sua forma de string) é 57 caracteres, incluindo chaves, aspas e valores. Isso ajuda o servidor a verificar se todos os dados foram recebidos corretamente.
+
+- O Payload mostra os dados reais enviados ao servidor (busca-endereco.php). Ele contém informações que, provavelmente, o servidor usará para buscar um endereço baseado no CEP fornecido ("38400-100"). O campo "apikey" vazio sugere que a autenticação pode estar faltando ou não foi preenchida, o que pode ser a razão para o status "403 Forbidden" retornado, indicando que o acesso foi negado, possivelmente por falta de credenciais válidas.
+
+- Em resumo, a requisição foi configurada corretamente para enviar dados JSON, mas o servidor rejeitou a solicitação (403), o que pode estar relacionado à ausência de uma apikey válida ou a restrições de acesso no servidor.

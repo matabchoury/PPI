@@ -1,0 +1,23 @@
+c) Consulta com o CEP 38400-100
+i. Código de status retornado: 200 OK
+ii. Valor do cabeçalho Content-Type: text/html; charset=UTF-8
+iii. Corpo da resposta HTTP: Uberlândia
+iv. Valor do cabeçalho Server: openresty
+v. A requisição HTTP não possui o cabeçalho Content-Type, pois é uma requisição GET sem corpo. Esse cabeçalho é usado principalmente em requisições POST ou PUT com dados no corpo.
+
+d) Consulta com o CEP 38400-500
+i. Código de status retornado: 404 Not Found
+ii. Valor do cabeçalho Content-Type: text/html; charset=UTF-8
+iii. Corpo da resposta HTTP: 38400-500 is not available
+iv. Valor do cabeçalho Server: openresty
+v. A requisição continua sendo do tipo GET, portanto não possui o cabeçalho Content-Type.
+
+e) Após introduzir erro de sintaxe no busca-cidade.php:
+i. Código de status retornado: 500 Internal Server Error
+ii. Corpo da resposta HTTP: (vazio ou mensagem genérica de erro do servidor)
+Como o display_errors está OFF, nenhuma mensagem de erro é mostrada ao usuário.
+
+f) Após ativar display_errors = ON:
+i. Código de status retornado: 500 Internal Server Error
+ii. Corpo da resposta HTTP:
+<b>Parse error</b>: syntax error, unexpected token "if" in /path/to/busca-cidade.php on line 5

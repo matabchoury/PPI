@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Pacientes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            function carregarPacientes() {
+                $.ajax({
+                    url: "controlador.php?acao=listarPacientes",
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        let tabela = $("#tabelaPacientes tbody");
+                        tabela.empty();
+                        data.forEach(paciente => {
+                            tabela.append(`<tr>
+                                <td>${paciente.nome}</td>
+                                <td>${paciente.email}</td>
+                                <td>${paciente.sexo}</td>
+                                <td>${paciente.peso} kg</td>
+                                <td>${paciente.altura} cm</td>
+                                <td>${paciente.tipo_sanguineo}</td>
+                            </tr>`);
+                        });
+                    },
+                    error: function () {
+                        alert("Erro ao carregar os pacientes.");
+                    }
+                });
+            }
+
+            carregarPacientes();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="mt-3">Lista de Pacientes</h2>
+        <table class="table table-striped" id="tabelaPacientes">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Sexo</th>
+                    <th>Peso</th>
+                    <th>Altura</th>
+                    <th>Tipo Sanguíneo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dados serão inseridos via AJAX -->
+            </tbody>
+        </table>
+        <a href="../index.html" class="btn btn-secondary">Menu de opções</a>
+    </div>
+</body>
+
+</html>
