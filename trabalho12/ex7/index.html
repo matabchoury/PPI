@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Fatos sobre Gatos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fefefe;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    #fact {
+      margin-top: 2rem;
+      font-size: 1.5rem;
+      color: #555;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Fato Aleatório sobre Gatos</h1>
+  <button id="fetchFact">Obter Fato</button>
+  <div id="fact">Clique no botão para ver um fato interessante sobre gatos!</div>
+
+  <script>
+    async function obterFatoGato() {
+      try {
+        const resposta = await fetch('https://catfact.ninja/fact');
+        if (!resposta.ok) throw new Error('Erro na requisição');
+        const dados = await resposta.json();
+        document.getElementById('fact').textContent = dados.fact;
+      } catch (erro) {
+        console.error('Erro ao buscar o fato:', erro);
+        document.getElementById('fact').textContent = 'Não foi possível obter um fato no momento.';
+      }
+    }
+
+    document.getElementById('fetchFact').addEventListener('click', obterFatoGato);
+  </script>
+
+</body>
+</html>

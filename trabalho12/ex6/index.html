@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Consulta de Cotações</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background-color: #f4f4f4;
+    }
+
+    form {
+      margin-bottom: 2rem;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+    }
+
+    input[type="text"] {
+      width: 200px;
+      padding: 0.5rem;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+    }
+
+    .resultado {
+      margin-top: 2rem;
+      background-color: white;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Consultar cotações de ações</h2>
+
+  <form id="form-cotacoes">
+    <label for="acao1">Código da Ação 1:</label>
+    <input type="text" id="acao1" required>
+
+    <label for="acao2">Código da Ação 2:</label>
+    <input type="text" id="acao2" required>
+
+    <label for="acao3">Código da Ação 3:</label>
+    <input type="text" id="acao3" required>
+
+    <button type="submit">Consultar Cotações</button>
+  </form>
+
+  <div class="resultado" id="resultado"></div>
+
+  <script>
+    // Função principal assíncrona
+    async function buscarCotacoes(codigos) {
+      try {
+        const resultadoDiv = document.getElementById("resultado");
+        resultadoDiv.innerHTML = "Buscando...";
+
+        // Monta as URLs de requisição para cada código
+        const urls = codigos.map(codigo =>
+          fetch(`https://api.example.com/acoes?codigo=${codigo.toUpperCase()}`) // Substituir por uma API real
+        );
+
+        // Aguarda todas as requisições em paralelo com Promise.all
+        const respostas = await Promise.all(urls);
+
+        // Transforma todas as respostas em JSON
+        const dados = await Promise.all(respostas.map(resp => resp.json()));
+
+        // Mostra os resultados
+        resultadoDiv.innerHTML = "";
+        dados.forEach((dado, index) => {
+          resultadoDiv.innerHTML += `<p><strong>${codigos[index].toUpperCase()}</strong>: R$ ${dado.preco}</p>`;
+        });
+
+      } catch (erro) {
+        console.error("Erro ao buscar cotações:", erro);
+        document.getElementById("resultado").innerHTML = "Erro ao buscar cotações.";
+      }
+    }
+
+    // Captura o envio do formulário
+    document.getElementById("form-cotacoes").onsubmit = function (e) {
+      e.preventDefault();
+
+      const codigo1 = document.getElementById("acao1").value;
+      const codigo2 = document.getElementById("acao2").value;
+      const codigo3 = document.getElementById("acao3").value;
+
+      buscarCotacoes([codigo1, codigo2, codigo3]);
+    }
+  </script>
+
+</body>
+</html>

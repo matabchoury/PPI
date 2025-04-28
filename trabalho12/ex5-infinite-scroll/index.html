@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Rolagem Infinita</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    /* Estilização da página */
+    body {
+      background-color: #dedede;
+      font-family: Helvetica;
+      width: 60%;
+      margin: 0 auto;
+      margin-top: 3rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      color: #888;
+    }
+
+    .item {
+      background-color: white;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+
+    .item-image {
+      width: 150px;
+      height: 150px;
+      margin: 0 2rem;
+    }
+
+    .item-name {
+      font: 2em Verdana;
+      color: #888;
+    }
+
+    .item-price {
+      font: 2em Verdana;
+      color: darkgreen;
+      margin-left: 2rem;
+    }
+
+    .item-price::before {
+      content: 'R$ ';
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Seção de produtos -->
+  <section id="products">
+    <h2>Nossos produtos</h2>
+
+    <!-- Template HTML usado como modelo para os itens de produto -->
+    <template id="item-template">
+      <div class="item">
+        <img class="item-image">
+        <span class="item-name"></span>
+        <span class="item-price"></span>
+      </div>
+    </template>
+  </section>
+
+  <script>
+    // Função que insere produtos na página
+    function renderProducts(newProducts) {
+      const prodsSection = document.getElementById("products"); // Seção onde os produtos serão exibidos
+      const divItemTemplate = document.getElementById("item-template").content.firstElementChild; // Referência ao template
+
+      // Para cada produto retornado da API, clona o template e preenche os dados
+      for (let product of newProducts) {
+        const newItem = divItemTemplate.cloneNode(true); // Clona o template
+        newItem.querySelector(".item-image").src = product.imagePath; // Imagem
+        newItem.querySelector(".item-name").textContent = product.name; // Nome
+        newItem.querySelector(".item-price").textContent = product.price; // Preço
+        prodsSection.appendChild(newItem); // Adiciona à seção
+      };
+    }
+
+    // Função que busca novos produtos via AJAX (fetch)
+    async function loadProducts() {
+      try {
+        let response = await fetch("more-products.php"); // Chamada ao PHP
+        if (!response.ok) throw new Error(response.statusText); // Verifica erro
+        var products = await response.json(); // Converte resposta JSON em objeto
+      }
+      catch (e) {
+        console.error(e); // Loga erro no console
+        return;
+      }
+      renderProducts(products); // Chama a função que renderiza os produtos
+    }
+
+    // Ao carregar a página, carrega os primeiros produtos
+    window.onload = function () {
+      loadProducts();
+    }
+
+    // Ao chegar no fim da página, carrega mais produtos (rolagem infinita)
+    window.onscroll = function () {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        loadProducts();
+      }
+    };
+
+  </script>
+
+</body>
+</html>
